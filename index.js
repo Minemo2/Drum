@@ -8,6 +8,7 @@ var numberOfDrumButtons = document.querySelectorAll(".drum").length;
 // while loop for adding listener to our all 7 buttons
 document.addEventListener("keydown", function(event){
     makeSound(event.key);
+    buttonAnimation(event.key);
 });
 
 var j = 0;
@@ -16,6 +17,7 @@ while (j <=numberOfDrumButtons){
     document.querySelectorAll("button")[j].addEventListener("click", function(){
         var buttonValue = this.innerHTML;
         makeSound(buttonValue);
+        buttonAnimation(buttonValue);
     });
     // call function with key press
     //document.querySelectorAll("button")[j].addEventListener("keydown", handleClick);
@@ -56,4 +58,15 @@ function makeSound(key){
             break;
         //default: console.log(buttonValue);
     }
+}
+
+function buttonAnimation(currentKey){
+    var activeButton = document.querySelector("." + currentKey);
+
+    activeButton.classList.add("pressed");
+
+    setTimeout(function(){
+        activeButton.classList.remove("pressed")
+    }, 200);
+
 }
